@@ -31,16 +31,18 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 COPY ./massmine /
 COPY ./jsan /
 
-RUN ln -s `pwd`/jsan/jsan /usr/local/bin && ln -s `pwd`/massmine /usr/local/bin && mkdir /code
+RUN ln -s `pwd`/jsan/jsan /usr/local/bin && \
+	ln -s `pwd`/massmine /usr/local/bin
+#	mkdir /code
 
-COPY ./src/webapp /code
-COPY ./requirements.txt /code
+#COPY ./src/webapp /code
+#COPY ./requirements.txt /
 
-WORKDIR /code
+#WORKDIR /code
 RUN pip3 install -r requirements.txt
 
 ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 
 # This should either start the server or run a startup script
-CMD python3 manage.py runserver 0.0.0.0:8000
+#CMD python3 manage.py runserver 0.0.0.0:8000
