@@ -4,8 +4,4 @@ services:
         ports:
             - '8000:8000'
         container_name: mmdev-v3
-        volumes:
-            - './src/webapp:/code'
-        image: 'mmdev:v2'
-        working_dir: /code
-        command: python manage.py runserver 0.0.0.0:8000
+        image: 'mmdev:v3'
