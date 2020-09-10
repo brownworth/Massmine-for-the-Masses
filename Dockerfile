@@ -36,7 +36,7 @@ RUN ln -s `pwd`/jsan/jsan /usr/local/bin && \
 #	mkdir /code
 
 #COPY ./src/webapp /code
-#COPY ./requirements.txt /
+COPY ./requirements.txt /
 
 #WORKDIR /code
 RUN pip3 install -r requirements.txt

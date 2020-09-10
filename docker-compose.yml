@@ -5,3 +5,7 @@ services:
             - '8000:8000'
         container_name: mmdev-v3
         image: 'mmdev:v3'
+        volumes:
+            - ./src/webapp:/code
+        working_dir: /code
+        command: python3 manage.py runserver 0.0.0.0:8000
