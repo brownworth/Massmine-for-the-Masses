@@ -25,14 +25,15 @@ RUN apt-get update -y && apt-get install -y \
 	wget \
 	zlib1g-dev
 
-RUN DEBIAN_FRONTEND="noninteractive" TZ="US/Eastern" apt-get -y install tzdata
+ENV TZ America/New_York
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 
 COPY ./massmine /
 COPY ./jsan /
 
 RUN ln -s `pwd`/jsan/jsan /usr/local/bin && ln -s `pwd`/massmine /usr/local/bin && mkdir /code
 
-COPY ./Massmine-for-the-Masses/src/webapp /code
+COPY ./src/webapp /code
 COPY ./requirements.txt /code
 
 WORKDIR /code
