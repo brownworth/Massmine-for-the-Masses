@@ -14,3 +14,11 @@ Team Members: Anusha Vanama
 
 Instructor: Dr. Somya Mohanty
 
+This repository builds upon Anusha Vanama's installation of the project with the intention of deploying it as a Docker container inside of an Ubuntu 18 image.
+
+Future Goals:
+- Deploy as a production instance hosted by UNCG
+- Reconstruct as Docker compose installation across multiple containers
+- Migrate DB storage off SQLite to Postgres or MySQL
+
+
