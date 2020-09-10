@@ -25,7 +25,7 @@ RUN apt-get update -y && apt-get install -y \
 	wget \
 	zlib1g-dev
 
-ENV TZ America/New_York
+ENV TZ=America/New_York
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 
 COPY ./massmine /
