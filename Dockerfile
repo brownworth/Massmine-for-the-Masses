@@ -25,7 +25,7 @@ RUN apt-get update -y && apt-get install -y \
 	wget \
 	zlib1g-dev
 
-ENV TZ=America/New_York
+#ENV TZ=America/New_York
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 
 COPY ./massmine /
@@ -38,11 +38,12 @@ RUN ln -s `pwd`/jsan/jsan /usr/local/bin && \
 #COPY ./src/webapp /code
 COPY ./requirements.txt /
 
-#WORKDIR /code
-RUN pip3 install -r requirements.txt
-
 ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 
+#WORKDIR /code
+RUN pip3 install -r requirements.txt
+
 # This should either start the server or run a startup script
+# now running this in the docker-compose.yml file
 #CMD python3 manage.py runserver 0.0.0.0:8000
