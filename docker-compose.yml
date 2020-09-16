@@ -3,8 +3,8 @@ services:
     mmdev:
         ports:
             - '8000:8000'
-        container_name: mmdev
-        image: 'mmdev:latest'
+        container_name: mftmdev
+        image: 'mftmdev:latest'
         volumes:
             - ./src/webapp:/code
         working_dir: /code

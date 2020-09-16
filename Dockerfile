@@ -28,11 +28,11 @@ RUN apt-get update -y && apt-get install -y \
 #ENV TZ=America/New_York
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 
-COPY ./massmine /
-COPY ./jsan /
+COPY ./massmine /massmine
+COPY ./jsan /jsan
 
 RUN ln -s `pwd`/jsan/jsan /usr/local/bin && \
-	ln -s `pwd`/massmine /usr/local/bin
+	ln -s `pwd`/massmine/massmine /usr/local/bin
 #	mkdir /code
 
 #COPY ./src/webapp /code
