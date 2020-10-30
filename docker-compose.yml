@@ -4,7 +4,7 @@ services:
         ports:
             - '8000:8000'
         container_name: mftmdev
-        image: 'mftmdev:latest'
+        image: 'mftmdev:18'
         volumes:
             - ./src/webapp:/code
         working_dir: /code

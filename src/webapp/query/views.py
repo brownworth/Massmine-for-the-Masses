@@ -15,6 +15,7 @@ import subprocess
 import os
 import json
 import time
+import sys
 
 def index(request):
 	return render(request, 'index.html')
@@ -23,17 +24,20 @@ def request_page(request):
 	return render(request, 'query/query.html', {})
 
 def validate_massmine(request):
-
+	outFile = open('mmlog.log', 'wb')
 	my_profile = instance=request.user.profile
 	consumer_key = my_profile.consumer_key
 	consumer_secret = my_profile.consumer_secret
 	access_token = my_profile.access_token
 	access_token_secret = my_profile.access_token_secret
 
-	child = pexpect.spawn('massmine --task=twitter-auth')
+	child = pexpect.spawn('massmine --task=twitter-auth',logfile=outFile)
+	#child.logfile = sys.stdout
 	child.expect('[No]')
+	#child.expect('Continue? (yes/no) [No]')
 	child.sendline('yes')
 	child.expect('Consumer key:')
+
 	child.sendline(consumer_key)
 	child.expect('Consumer secret:')
 	child.sendline(consumer_secret)

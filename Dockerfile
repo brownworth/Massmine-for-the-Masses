@@ -3,6 +3,7 @@ From ubuntu:18.04
 RUN apt-get update -y && apt-get install -y \
 	apt-utils \
 	ca-certificates \
+	erlang \
 	git \
 	libcairo2-dev \
 	libenchant-dev \
@@ -26,7 +27,11 @@ RUN apt-get update -y && apt-get install -y \
 	zlib1g-dev
 
 #ENV TZ=America/New_York
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+#RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+
+#ARG DEBIAN_FRONTEND=noninteractive
+#ENV TZ=America/New_York
+#RUN apt-get install -y tzdata
 
 COPY ./massmine /massmine
 COPY ./jsan /jsan
