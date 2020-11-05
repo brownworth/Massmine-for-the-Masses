@@ -1,12 +1,12 @@
-From ubuntu:18.04
+From ubuntu:20.04
 
-RUN apt-get update -y && apt-get install -y \
-	apt-utils \
+RUN apt-get update -y
+
+RUN apt-get install -y \
 	ca-certificates \
 	erlang \
 	git \
 	libcairo2-dev \
-	libenchant-dev \
 	libfreetype6 \
 	libfreetype6-dev \
 	libgif-dev \
@@ -26,29 +26,23 @@ RUN apt-get update -y && apt-get install -y \
 	wget \
 	zlib1g-dev
 
-#ENV TZ=America/New_York
-#RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=US/Eastern
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-#ARG DEBIAN_FRONTEND=noninteractive
-#ENV TZ=America/New_York
-#RUN apt-get install -y tzdata
+RUN apt-get install -y \
+	tzdata \
+	libenchant-dev \
 
 COPY ./massmine /massmine
 COPY ./jsan /jsan
 
 RUN ln -s `pwd`/jsan/jsan /usr/local/bin && \
 	ln -s `pwd`/massmine/massmine /usr/local/bin
-#	mkdir /code
 
-#COPY ./src/webapp /code
 COPY ./requirements.txt /
 
 ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 
-#WORKDIR /code
 RUN pip3 install -r requirements.txt
-
-# This should either start the server or run a startup script
-# now running this in the docker-compose.yml file
-#CMD python3 manage.py runserver 0.0.0.0:8000
