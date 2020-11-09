@@ -7,5 +7,6 @@ services:
         image: 'mftmdev:20'
         volumes:
             - ./src/webapp:/code
+        build: .
         working_dir: /code
         command: python3 manage.py runserver 0.0.0.0:8000
