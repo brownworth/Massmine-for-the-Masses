@@ -45,7 +45,7 @@ def validate_massmine(request):
 	child.sendline(access_token)
 	child.expect('Access token secret')
 	child.sendline(access_token_secret)
-	child.wait()
+	#child.wait()
 	#exit status should be 0 on a success, 1 on a fail. signal status is if something else interrupted the command.
 	return(child.exitstatus)
 
